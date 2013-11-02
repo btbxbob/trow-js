@@ -5,9 +5,7 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<title>Trow API in Terminal</title>
 			<link rel="stylesheet" href="">
-			<script src="jquery-2.0.3.min.js"></script>
-			<script src="jquery.terminal-0.7.7.min.js"></script>
-			<script src="libtrow.js"></script>
+			<script data-main="main" src="require.js"></script>
 			<style type="text/css" media="screen">
 				.inverted {
 					background: gray;
@@ -29,34 +27,8 @@
 	<body>
 		<div id="terminal1" class="terminal">
 		</div>
-		<script>
-		function trow_login(name,pass,callback) {
-			// body...
-			callback(123);
-		}
-		jQuery(function($, undefined) {
-		    $('#terminal1 ').terminal(function(command, term) {
-		        if (command !== '') {
-		            try {
-		                var result = window.eval(command); //actually do the work
-		                if (result !== undefined) {
-		                    term.echo(new String(result));
-		                }
-		            } catch(e) {
-		                term.error(new String(e));  //error handler
-
-		            }
-		        } else {
-		           term.echo('');
-		        }
-		    }, {
-		        greetings: 'TROW 命令行访问',
-		        name: 'js_demo',
-		        height: 200,
-		        //tabcompletion: true,
-		        login: trow_login,
-		        prompt: 'js> '});
-		});
+		<<script>
+			
 		</script>
 	</body>
 </html>
