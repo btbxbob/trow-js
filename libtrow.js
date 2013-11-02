@@ -6,7 +6,6 @@ function libtrow($,Appsecret)
 	{
 		$.getJSON('http://trow.cc/api/stats/time', function(json, textStatus) {
 				/*optional stuff to do after success */
-				alert(json);
 				this.stime=json;
 		});
 	}
