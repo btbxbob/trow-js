@@ -1,6 +1,6 @@
-require(["jquery-2.0.3.min","jquery.terminal-0.7.7.min","libtrow"]
+require(["jquery-2.0.3.min","jquery.terminal-0.7.7.min"]
 	);
-require(["domready!"],function(doc)
+require(["domready!","libtrow"],function(doc,libtrow) //run when dom is ready
 {
 		function trow_login(name,pass,callback) {
 			// body...
@@ -29,4 +29,6 @@ require(["domready!"],function(doc)
 		        login: trow_login,
 		        prompt: 'js> '});
 		});
+
+		tr=new libtrow("965cf93c", "773c7406f8e2b167c317b95dd579a83f")
 })
