@@ -70,12 +70,16 @@ define(['jquery', 'jquery.crypt'],
 								this.utoken = json.data.utoken;
 								if (typeof(callback) === "function")
 								{
-									callback();
+									callback(this.uid);
 								}
 							}
 							else
 							{
-								throw (json.message);
+								console.log(json.message);
+								if (typeof(callback) === "function")
+								{
+									callback();
+								}
 							}
 						}, this)
 					);
