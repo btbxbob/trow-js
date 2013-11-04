@@ -1,0 +1,8 @@
+{
+	"name" : "libtrow-js",
+	"url" : "https://github.com/btbxbob/trow-js",
+	"options" :{
+		"outdir" : "./docs",
+		"tabtospace" : 4
+	}
+}

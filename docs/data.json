@@ -1,0 +1,233 @@
+{
+    "project": {
+        "name": "libtrow-js",
+        "url": "https://github.com/btbxbob/trow-js"
+    },
+    "files": {
+        "domReady.js": {
+            "name": "domReady.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "libtrow.js": {
+            "name": "libtrow.js",
+            "modules": {
+                "libtrow": 1
+            },
+            "classes": {
+                "libtrow": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "libtrow": {
+            "name": "libtrow",
+            "submodules": {},
+            "classes": {
+                "libtrow": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "libtrow.js",
+            "line": 8,
+            "description": "a javascript TROW library"
+        }
+    },
+    "classes": {
+        "libtrow": {
+            "name": "libtrow",
+            "shortname": "libtrow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "libtrow",
+            "namespace": "",
+            "file": "libtrow.js",
+            "line": 8,
+            "description": "the class starts here.",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "domReady.js",
+            "line": 1,
+            "license": "RequireJS domReady 2.0.1 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/requirejs/domReady for details",
+            "class": "libtrow"
+        },
+        {
+            "file": "domReady.js",
+            "line": 40,
+            "description": "Sets the page as loaded.",
+            "class": "libtrow"
+        },
+        {
+            "file": "domReady.js",
+            "line": 97,
+            "class": "libtrow"
+        },
+        {
+            "file": "domReady.js",
+            "line": 99,
+            "description": "Registers a callback for DOM ready. If DOM is already ready, the\ncallback is called immediately.",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "libtrow"
+        },
+        {
+            "file": "domReady.js",
+            "line": 115,
+            "description": "Loader Plugin API method",
+            "class": "libtrow"
+        },
+        {
+            "file": "domReady.js",
+            "line": 126,
+            "class": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 16,
+            "description": "remember last time got time.",
+            "itemtype": "property",
+            "name": "last",
+            "type": "{Number}",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 22,
+            "description": "place to save time got from server\ninthel said the token will timeout in 5 minutes, about 300,000 ms.",
+            "itemtype": "property",
+            "name": "servertime",
+            "type": "{Number}",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 29,
+            "description": "appsecret got from trow.cc",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "appsecret",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 35,
+            "description": "appkey got from trow.cc",
+            "itemtype": "property",
+            "name": "appkey",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 40,
+            "description": "result by {{#crossLink \"libtrow/calcAppToken:method\"}}calcAppToken{{/crossLink}}",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "apptoken",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 50,
+            "description": "to get time from the server.",
+            "itemtype": "method",
+            "name": "getTime",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "a callback when done",
+                    "type": "Function"
+                }
+            ],
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 72,
+            "description": "calculate the apptoken for further use.",
+            "itemtype": "method",
+            "name": "calcAppToken",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 97,
+            "description": "to login.",
+            "itemtype": "method",
+            "name": "getLogin",
+            "params": [
+                {
+                    "name": "uname",
+                    "description": "user name.",
+                    "type": "String"
+                },
+                {
+                    "name": "ucode",
+                    "description": "password.",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback when done.",
+                    "type": "Function"
+                }
+            ],
+            "class": "libtrow",
+            "module": "libtrow"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: license",
+            "line": " domReady.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " domReady.js:1"
+        },
+        {
+            "message": "Missing item type\nSets the page as loaded.",
+            "line": " domReady.js:40"
+        },
+        {
+            "message": "Missing item type",
+            "line": " domReady.js:97"
+        },
+        {
+            "message": "Missing item type\nRegisters a callback for DOM ready. If DOM is already ready, the\ncallback is called immediately.",
+            "line": " domReady.js:99"
+        },
+        {
+            "message": "Missing item type\nLoader Plugin API method",
+            "line": " domReady.js:115"
+        },
+        {
+            "message": "Missing item type",
+            "line": " domReady.js:126"
+        }
+    ]
+}
