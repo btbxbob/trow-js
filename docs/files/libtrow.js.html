@@ -89,33 +89,31 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-* a javascript TROW library
-* @module libtrow
-*/
+ * a javascript TROW library
+ * @module libtrow
+ */
 define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
-    function(jquery, nil)
-    {
+    function(jquery, nil) {
         /**
         the class starts here.
         @class libtrow
         @constructor
         */
-        return function(Appkey, Appsecret)
-        {
+        return function(Appkey, Appsecret) {
             var $ = jquery;
             /**
-            * remember last time got time.
-            * @property last
-            * @type {Number}
-            */
-            this.last = 0; 
+             * remember last time got time.
+             * @property last
+             * @type {Number}
+             */
+            this.last = 0;
             /** 
-            place to save time got from server
+            place to save time got from server.
             inthel said the token will timeout in 5 minutes, about 300,000 ms.
             @property servertime
             @type {Number}
             */
-            this.servertime = 0; 
+            this.servertime = 0;
             /**
             appsecret got from trow.cc
             @private
@@ -124,37 +122,41 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
             var appsecret = Appsecret; //secret must be secret
             /**
             appkey got from trow.cc
+            @type {String}
             @property appkey
             */
             this.appkey = Appkey;
             /**
-            result by {{#crossLink &quot;libtrow/calcAppToken:method&quot;}}calcAppToken{{/crossLink}}
+            result of calcAppToken()
             @private
             @property apptoken
             */
             var apptoken; //calc by calcAppToken()
-            
-            this.uid = &quot;&quot;; //get by getLogin
+            /**
+            result of getLogin().
+            @property uid
+            */
+            this.uid = &quot;&quot;;
+            /**
+            result of getLogin().
+            @property utoken
+            */
             var utoken = &quot;&quot;; //get by getLogin
 
             /**
-            * to get time from the server.
-            * @method getTime
-            * @param {Function} callback a callback when done
-            */
-            this.getTime = function(callback)
-            {
-                $.ajaxSetup(
-                {
+             * to get time from the server.
+             * @method getTime
+             * @param {Function} callback a callback when done
+             */
+            this.getTime = function(callback) {
+                $.ajaxSetup({
                     cache: false
                 });
-                $.getJSON(&#x27;http://trow.cc/api/stats/time&#x27;, $.proxy(function(json, textStatus)
-                {
+                $.getJSON(&#x27;http://trow.cc/api/stats/time&#x27;, $.proxy(function(json, textStatus) {
                     this.servertime = json.data.time;
                     this.last = event.timeStamp; //renew last time
                     this.calcAppToken(); //recalc token
-                    if (typeof(callback) === &quot;function&quot;)
-                    {
+                    if (typeof(callback) === &quot;function&quot;) {
                         callback();
                     }
                 }, this));
@@ -163,21 +165,16 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
             calculate the apptoken for further use.
             @method calcAppToken
             */
-            this.calcAppToken = function()
-            {
+            this.calcAppToken = function() {
                 //example: $apptoken = md5($appkey.sha1($appsecret.$t))
-                var md5 = function(source)
-                {
-                    return $().crypt(
-                    {
+                var md5 = function(source) {
+                    return $().crypt({
                         method: &quot;md5&quot;,
                         source: source
                     })
                 }
-                var sha1 = function(source)
-                {
-                    return $().crypt(
-                    {
+                var sha1 = function(source) {
+                    return $().crypt({
                         method: &quot;sha1&quot;,
                         source: source
                     })
@@ -191,35 +188,26 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
             @param {String} ucode password.
             @param {Function} callback callback when done.
             */
-            this.getLogin = function(uname, ucode, callback)
-            {
-                var inner = $.proxy(function()
-                {
+            this.getLogin = function(uname, ucode, callback) {
+                var inner = $.proxy(function() {
                     //must post
-                    $.post(&#x27;https://trow.cc/api/members/login&#x27;,
-                        {
+                    $.post(&#x27;https://trow.cc/api/members/login&#x27;, {
                             &#x27;t&#x27;: this.servertime,
                             &#x27;apptoken&#x27;: apptoken,
                             &#x27;appkey&#x27;: this.appkey,
                             &#x27;uname&#x27;: uname,
                             &#x27;ucode&#x27;: ucode
                         },
-                        $.proxy(function(json, textStatus)
-                        {
-                            if (json.code == 42)
-                            {
+                        $.proxy(function(json, textStatus) {
+                            if (json.code == 42) {
                                 this.uid = json.data.uid;
                                 utoken = json.data.utoken;
-                                if (typeof(callback) === &quot;function&quot;)
-                                {
+                                if (typeof(callback) === &quot;function&quot;) {
                                     callback(this.uid);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 console.log(json.message);
-                                if (typeof(callback) === &quot;function&quot;)
-                                {
+                                if (typeof(callback) === &quot;function&quot;) {
                                     callback();
                                 }
                             }
@@ -228,30 +216,25 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
                 }, this);
 
                 //get time first
-                if (+new Date - this.last &gt; 200000)
-                {
+                if (+new Date - this.last &gt; 200000) {
                     this.getTime( //so we need a callback
-                        $.proxy(function()
-                        {
+                        $.proxy(function() {
                             inner();
                         }, this)
                     );
-                }
-                else
-                {
+                } else {
                     inner();
                 }
             }
-            this.getInfo = function(id, callback)
-            {
-                if (+new Date - this.last &gt; 200000)
-                {
-                    this.gettime();
-                }
-                var inner = $.proxy(function()
-                {
-                    $.getJSON(&#x27;http://trow.cc/api/members/info&#x27;,
-                        {
+            /**
+            get user id&#x27;s info
+            @function getInfo
+            @param {Number} id user&#x27;s id
+            @param {Function} callback callback when done.
+            */
+            this.getInfo = function(id, callback) {
+                var inner = $.proxy(function() {
+                    $.getJSON(&#x27;http://trow.cc/api/members/info&#x27;, {
                             &#x27;t&#x27;: this.servertime,
                             &#x27;apptoken&#x27;: apptoken,
                             &#x27;appkey&#x27;: this.appkey,
@@ -259,21 +242,15 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
                             &#x27;uid&#x27;: this.uid,
                             &#x27;utoken&#x27;: utoken
                         },
-                        $.proxy(function(json)
-                        {
-                            if (json.code == 42)
-                            {
+                        $.proxy(function(json) {
+                            if (json.code == 42) {
                                 console.log(JSON.stringify(json));
-                                if (typeof(callback) === &quot;function&quot;)
-                                {
+                                if (typeof(callback) === &quot;function&quot;) {
                                     callback(json);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 console.log(json.message);
-                                if (typeof(callback) === &quot;function&quot;)
-                                {
+                                if (typeof(callback) === &quot;function&quot;) {
                                     callback();
                                 }
                             }
@@ -281,17 +258,60 @@ define([&#x27;jquery&#x27;, &#x27;jquery.crypt&#x27;],
                 }, this);
 
                 //get time first
-                if (+new Date - this.last &gt; 200000)
-                {
+                if (+new Date - this.last &gt; 200000) {
                     this.getTime( //so we need a callback
-                        $.proxy(function()
-                        {
+                        $.proxy(function() {
                             inner();
                         }, this)
                     );
+                } else {
+                    inner();
                 }
-                else
-                {
+            }
+
+            /**
+            get topics from trow
+            @function getTopic
+            @param {Number} fid
+            @param {Number} limit
+            @param {Number} start
+            */
+            this.getTopic = function(fid, limit, start) {
+                var inner = $.proxy(function() {
+                    data = {
+                        &#x27;t&#x27;: this.servertime,
+                        &#x27;apptoken&#x27;: apptoken,
+                        &#x27;appkey&#x27;: this.appkey,
+                        &#x27;uid&#x27;: this.uid,
+                        &#x27;utoken&#x27;: utoken
+                    }
+                    if (fid) data.fid = fid;
+                    if (limit) data.limit = limit;
+                    if (start) data.start = start;
+                    $.getJSON(&#x27;http://trow.cc/api/topics/list&#x27;, data,
+                        $.proxy(function(json) {
+                            if (json.code == 42) {
+                                console.log(JSON.stringify(json));
+                                if (typeof(callback) === &quot;function&quot;) {
+                                    callback(json);
+                                }
+                            } else {
+                                console.log(json.message);
+                                if (typeof(callback) === &quot;function&quot;) {
+                                    callback();
+                                }
+                            }
+                        }, this));
+                }, this);
+
+                //get time first
+                if (+new Date - this.last &gt; 200000) {
+                    this.getTime( //so we need a callback
+                        $.proxy(function() {
+                            inner();
+                        }, this)
+                    );
+                } else {
                     inner();
                 }
             }

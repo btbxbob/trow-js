@@ -34,7 +34,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "libtrow.js",
-            "line": 8,
+            "line": 7,
             "description": "a javascript TROW library"
         }
     },
@@ -50,7 +50,7 @@
             "module": "libtrow",
             "namespace": "",
             "file": "libtrow.js",
-            "line": 8,
+            "line": 7,
             "description": "the class starts here.",
             "is_constructor": 1
         }
@@ -99,7 +99,7 @@
         },
         {
             "file": "libtrow.js",
-            "line": 16,
+            "line": 14,
             "description": "remember last time got time.",
             "itemtype": "property",
             "name": "last",
@@ -109,8 +109,8 @@
         },
         {
             "file": "libtrow.js",
-            "line": 22,
-            "description": "place to save time got from server\ninthel said the token will timeout in 5 minutes, about 300,000 ms.",
+            "line": 20,
+            "description": "place to save time got from server.\ninthel said the token will timeout in 5 minutes, about 300,000 ms.",
             "itemtype": "property",
             "name": "servertime",
             "type": "{Number}",
@@ -119,7 +119,7 @@
         },
         {
             "file": "libtrow.js",
-            "line": 29,
+            "line": 27,
             "description": "appsecret got from trow.cc",
             "access": "private",
             "tagname": "",
@@ -130,8 +130,9 @@
         },
         {
             "file": "libtrow.js",
-            "line": 35,
+            "line": 33,
             "description": "appkey got from trow.cc",
+            "type": "{String}",
             "itemtype": "property",
             "name": "appkey",
             "class": "libtrow",
@@ -139,8 +140,8 @@
         },
         {
             "file": "libtrow.js",
-            "line": 40,
-            "description": "result by {{#crossLink \"libtrow/calcAppToken:method\"}}calcAppToken{{/crossLink}}",
+            "line": 39,
+            "description": "result of calcAppToken()",
             "access": "private",
             "tagname": "",
             "itemtype": "property",
@@ -150,7 +151,25 @@
         },
         {
             "file": "libtrow.js",
+            "line": 45,
+            "description": "result of getLogin().",
+            "itemtype": "property",
+            "name": "uid",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
             "line": 50,
+            "description": "result of getLogin().",
+            "itemtype": "property",
+            "name": "utoken",
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 56,
             "description": "to get time from the server.",
             "itemtype": "method",
             "name": "getTime",
@@ -166,7 +185,7 @@
         },
         {
             "file": "libtrow.js",
-            "line": 72,
+            "line": 74,
             "description": "calculate the apptoken for further use.",
             "itemtype": "method",
             "name": "calcAppToken",
@@ -175,7 +194,7 @@
         },
         {
             "file": "libtrow.js",
-            "line": 97,
+            "line": 94,
             "description": "to login.",
             "itemtype": "method",
             "name": "getLogin",
@@ -198,12 +217,67 @@
             ],
             "class": "libtrow",
             "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 139,
+            "description": "get user id's info",
+            "itemtype": "method",
+            "name": "getInfo",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "user's id",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback when done.",
+                    "type": "Function"
+                }
+            ],
+            "class": "libtrow",
+            "module": "libtrow"
+        },
+        {
+            "file": "libtrow.js",
+            "line": 182,
+            "description": "get topics from trow",
+            "itemtype": "method",
+            "name": "getTopic",
+            "params": [
+                {
+                    "name": "fid",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "limit",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "start",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "libtrow",
+            "module": "libtrow"
         }
     ],
     "warnings": [
         {
             "message": "unknown tag: license",
             "line": " domReady.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " libtrow.js:139"
+        },
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " libtrow.js:182"
         },
         {
             "message": "Missing item type",
